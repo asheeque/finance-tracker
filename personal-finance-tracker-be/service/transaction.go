@@ -15,12 +15,13 @@ func (s *Service) CreateTransaction(transaction *models.Transaction) error {
 		return errors.New("invalid transaction_date format, expected YYYY-MM-DD")
 	}
 
-	// Set the parsed date as a time.Time object
-	transaction.TransactionDate = parsedDate.UTC().Format(time.RFC3339) // Store as ISO 8601 with Z
-	transaction.Date = time.Now().UTC()                                 // System-generated date
+	// Format and store transaction_date as YYYY-MM-DD (UTC)
+	transaction.TransactionDate = parsedDate.Format("2006-01-02") // Standardize to date-only format
+	transaction.Date = time.Now().UTC()
 
 	return s.repository.CreateTransaction(transaction)
 }
+
 func (s *Service) GetTransactions(userID primitive.ObjectID) ([]models.Transaction, error) {
 	return s.repository.GetTransactions(userID)
 }

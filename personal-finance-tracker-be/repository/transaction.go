@@ -7,6 +7,7 @@ import (
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func (r *Repository) CreateTransaction(transaction *models.Transaction) error {
@@ -33,7 +34,11 @@ func (r *Repository) GetTransactions(userID primitive.ObjectID) ([]models.Transa
 
 	var transactions []models.Transaction
 	filter := bson.M{"user_id": userID}
-	cursor, err := r.transactionCollRef.Find(ctx, filter)
+
+	options := options.Find()
+	options.SetSort(bson.D{{Key: "transaction_date", Value: -1}}) // Sort by transaction_date in descending order
+
+	cursor, err := r.transactionCollRef.Find(ctx, filter, options)
 	if err != nil {
 		return nil, err
 	}

@@ -6,12 +6,12 @@ import { Box } from "@mui/material";
 
 const DashboardPage = () => {
   return (
-    <Box display="flex" flexDirection="row" gap={2} padding={2} height={"90vh"}>
+    <Box display="flex" flexDirection="row" gap={2} padding={2} height={"90vh"} >
       <Box flex={2} display="flex" flexDirection="column" sx={{'padding':'50px'}}>
-        <Box flex={1} >
+        <Box flex={1} minHeight={0}>
           <Graph />
         </Box>
-        <Box flex={1}>
+        <Box flex={1} minHeight={0}>
           <TransactionHistory />
         </Box>
       </Box>

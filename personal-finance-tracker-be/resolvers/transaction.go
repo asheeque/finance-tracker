@@ -1,6 +1,7 @@
 package resolvers
 
 import (
+	"fmt"
 	"net/http"
 	"personal-finance-tracker-be/models"
 
@@ -21,7 +22,7 @@ func (r *Resolver) CreateTransaction(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Invalid user ID format"})
 		return
 	}
-
+	fmt.Println(userID)
 	// Parse the transaction data
 	var transaction models.Transaction
 	if err := c.ShouldBindJSON(&transaction); err != nil {

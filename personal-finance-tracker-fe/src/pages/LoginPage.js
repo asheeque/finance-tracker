@@ -12,7 +12,7 @@ const LoginPage = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      navigate("/"); // Redirect if already logged in
+      navigate("/dashboard"); // Redirect if already logged in
     }
   }, [navigate]);
 
@@ -31,7 +31,7 @@ const LoginPage = () => {
       }
       const data = await loginUser(body);
       localStorage.setItem("token", data.token);
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       setError(err.message);
     }

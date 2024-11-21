@@ -13,6 +13,7 @@ type Transaction struct {
 	Amount          float64            `bson:"amount" json:"amount"`
 	Category        string             `bson:"category" json:"category"`
 	TransactionDate string             `bson:"transaction_date" json:"transaction_date"`
+	TransactionType string             `bson:"transaction_type" json:"transaction_type"`
 	Description     string             `bson:"description,omitempty" json:"description,omitempty"`
 	Date            time.Time          `bson:"date" json:"date"`
 }
